@@ -1,6 +1,6 @@
 import alpinejs from "@astrojs/alpinejs";
-import cloudflare from "@astrojs/cloudflare";
 import markdoc from "@astrojs/markdoc";
+import node from "@astrojs/node";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
@@ -15,11 +15,8 @@ import { defaultLocale, locales, siteTitle, siteUrl } from "./site.config";
 export default defineConfig({
 	site: siteUrl,
 	output: "hybrid",
-	adapter: cloudflare({
-		imageService: "compile",
-		experimental: {
-			manualChunks: ["sharp"],
-		},
+	adapter: node({
+		mode: "standalone",
 	}),
 	compressHTML: true,
 	i18n: {
